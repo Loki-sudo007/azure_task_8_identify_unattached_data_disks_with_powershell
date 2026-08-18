@@ -6,4 +6,6 @@ $unattachedDisks = $disks | Where-Object {
     $_.ManagedBy -eq $null -and $_.DiskState -eq "Unattached"
 }
 
-$unattachedDisks | ConvertTo-Json -Depth 10 | Out-File "result.json"
+$resultPath = Join-Path $PSScriptRoot "result.json"
+
+$unattachedDisks | ConvertTo-Json -Depth 10 | Out-File -FilePath $resultPath
